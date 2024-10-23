@@ -1,0 +1,33 @@
+---
+import Layout from "@/layouts/fullPageBox.astro";
+---
+
+<Layout>
+	<main>
+		<div class="flex h-[50%] flex-col-reverse justify-center md:flex-row">
+			<div class="prose flex flex-col items-center justify-center text-center md:basis-1/2">
+				<h1>BCUW</h1>
+				<p>
+					BlossomCraft Unofficial Wiki
+					<br />
+						<>
+							Owned and maintained by{" "}
+							<span class="mention">@🌸 Altie122</span>
+						</>
+				</p>
+			</div>
+			<div class="flex items-center justify-center md:basis-1/2">
+				<img
+					src="/bcuwTitleNormal.png"
+					alt="BCUW"
+					class="h-auto w-1/2"
+					style={{
+						filter: "drop-shadow(0 0 3rem hsla(306, 66%, 66%, 0.2))",
+					}}
+					width={400}
+					height={400}
+				/>
+			</div>
+		</div>
+	</main>
+</Layout>

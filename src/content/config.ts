@@ -1,20 +1,19 @@
 import { z, defineCollection, reference } from "astro:content";
 
 const blogCollection = defineCollection({
-  type: "content",
   schema: z.object({
-    isDraft: z.boolean(),
     title: z.string(),
-    image: z.object({
-      src: z.string(),
-      alt: z.string(),
-    }),
-    author: reference('authors'),
+    description: z.string(),
+    publishDate: z.date(),
+    authors: z.array(z.string()),
+    footnote: z.string().optional(),
+    isDraft: z.boolean(),
+    socialImage: z.string().optional(),
+    coverImage: z.string().optional(),
   }),
 });
 
 const itembcCollection = defineCollection({
-  type: "content",
   schema: z.object({
     title: z.string(),
     images: z.object({
@@ -27,20 +26,25 @@ const itembcCollection = defineCollection({
 });
 
 const itemmcollection = defineCollection({
-  type: "content",
   schema: z.object({
     title: z.string(),
     images: z.object({
       mono: z.string().url(),
       color: z.string().url(),
     }),
-    type: z.enum(["weapon", "armor", "consumable", "tool", "building", "other"]),
+    type: z.enum([
+      "weapon",
+      "armor",
+      "consumable",
+      "tool",
+      "building",
+      "other",
+    ]),
     crate: reference("crates"),
   }),
 });
 
 const crateCollection = defineCollection({
-  type: "data",
   schema: z.object({
     title: z.string(),
     release: z.string().transform((val) => new Date(val)),
@@ -49,12 +53,13 @@ const crateCollection = defineCollection({
 });
 
 const authors = defineCollection({
-  type: "data",
   schema: z.object({
     name: z.string(),
-    socials: z.array(z.string()),
-    avatar: z.string().url(),
-  })
+    MCusername: z.string(),
+    BCusername: z.string(),
+    role: z.string(),
+    pfp: z.string().url(),
+  }),
 });
 
 export const collections = {

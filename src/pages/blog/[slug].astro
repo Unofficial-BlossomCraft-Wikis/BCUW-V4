@@ -36,6 +36,7 @@ const gradients = [
 	"bg-blue-green-gradient",
 	"bg-blue-purple-gradient",
 	"bg-orange-yellow-gradient",
+  "bg-pink-purple-gradient",
 ];
 
 const placeholderGradient = randomFromArray(gradients);
@@ -45,6 +46,7 @@ const placeholderGradient = randomFromArray(gradients);
 	title={data.title}
 	description={data.description}
 >
+<div class="w-full">
 	{
 		coverImage ? (
 			<div class="mx-auto w-full max-w-screen-lg md:-mb-10 lg:-mb-12 xl:-mb-16">
@@ -70,7 +72,7 @@ const placeholderGradient = randomFromArray(gradients);
 
 	<div class="grid-container relative mx-auto max-w-screen-lg z-10 prose">
 		<div
-			class="mx-auto w-fit max-w-full bg-background py-8 md:px-10 md:py-12 lg:p-12 lg:py-16 xl:p-16 xl:py-20 px-1"
+			class="mx-auto w-fit max-w-full bg-background py-8 md:px-10 md:py-12 lg:p-12 lg:py-16 xl:p-16 xl:py-20 px-1 rounded-lg"
 		>
 			<header class="mx-auto w-full max-w-prose text-center">
 				<time class="code text-astro-gray-200" datetime={data.publishDate.toISOString()}>
@@ -99,6 +101,7 @@ const placeholderGradient = randomFromArray(gradients);
 			</article>
 		</div>
 	</div>
+</div>
 </Layout>
 
 <script>

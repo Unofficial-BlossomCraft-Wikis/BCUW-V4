@@ -1,6 +1,9 @@
+@import './starlight/props.css';
+@import './starlight/asides.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer base {
   :root {
     --celestial: #0cebff;

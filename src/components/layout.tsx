@@ -5,11 +5,11 @@ import Navbar from "./navbar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = React.useState(() => {
-    const savedOpenState = sessionStorage.getItem('sidebarOpen');
+    const savedOpenState = sessionStorage.getItem('main-sidebarOpen');
     return savedOpenState ? JSON.parse(savedOpenState) : true;
   });
   React.useEffect(() => {
-    sessionStorage.setItem('sidebarOpen', JSON.stringify(open));
+    sessionStorage.setItem('main-sidebarOpen', JSON.stringify(open));
   }, [open]);
   return (
     <SidebarProvider open={open} onOpenChange={setOpen}>

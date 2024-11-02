@@ -19,9 +19,14 @@ const itembcCollection = defineCollection({
     images: z.object({
       mono: z.string().url(),
       color: z.string().url(),
+      itemslot: z.string().url(),
     }),
     type: z.enum(["magic/infinite", "weapon", "armor", "consumable", "tool"]),
     crate: reference("crates"),
+    rarity: z.enum(["common", "uncommon", "rare", "epic", "legendary"]),
+    enchantments: z.array(z.string()),
+    unmodifiable: z.boolean(),
+    unbreaking: z.boolean(),
   }),
 });
 

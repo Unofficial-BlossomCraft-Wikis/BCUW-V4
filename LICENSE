@@ -21,7 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 """
-This license applies to the `src/styles/starlight` subdirectory originating from the [Starlight](https://github.com/withastro/starlight) project:
+This license applies to the `src/styles/starlight` and `src/components/starlight` subdirectories originating from the [Starlight](https://github.com/withastro/starlight) project:
 
 MIT License
 

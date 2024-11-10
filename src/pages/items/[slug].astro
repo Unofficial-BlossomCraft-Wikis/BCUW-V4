@@ -6,7 +6,7 @@ import { Separator } from "@components/ui/separator";
 import CDN from "@components/CDN.astro";
 import { Badge } from "@components/ui/badge";
 import { randomFromArray } from "@lib/random";
-import BlogPostPreview from "./_components/BlogPostPreview.astro";
+import ItemPreview from "./_components/ItemPreview.astro";
 
 export type Props = {
 	post: CollectionEntry<"bcitems">;
@@ -129,30 +129,30 @@ while (recommendedItem4.slug === post.slug || recommendedItem1.slug === recommen
             <h2 class="noborder">Also from the {crateData.data.title}:</h2>
             <div class="flex gap-2 flex-wrap flex-col w-full p-2">
               {/* @ts-expect-error this is fine, post is a diffrent type but they lign up */}
-              <BlogPostPreview post={recommendedItem1} />
+              <ItemPreview post={recommendedItem1} />
               {/* @ts-expect-error this is fine, post is a diffrent type but they lign up */}
-              <BlogPostPreview post={recommendedItem2} />
+              <ItemPreview post={recommendedItem2} />
             </div>
             <Separator />
             <h2 class="noborder">Explore These Items:</h2>
             <div class="flex gap-2 flex-wrap flex-col w-full p-2">
               {/* @ts-expect-error this is fine, post is a diffrent type but they lign up */}
-              <BlogPostPreview post={recommendedItem3} />
+              <ItemPreview post={recommendedItem3} />
               {/* @ts-expect-error this is fine, post is a diffrent type but they lign up */}
-              <BlogPostPreview post={recommendedItem4} />
+              <ItemPreview post={recommendedItem4} />
             </div>
           </>
         ) : (
           <h2 class="noborder">Explore These Items:</h2>
           <div class="flex gap-2 flex-wrap flex-col w-full p-2">
               {/* @ts-expect-error this is fine, post is a diffrent type but they lign up */}
-            <BlogPostPreview post={recommendedItem1} />
+            <ItemPreview post={recommendedItem1} />
             {/* @ts-expect-error this is fine, post is a diffrent type but they lign up */}
-            <BlogPostPreview post={recommendedItem2} />
+            <ItemPreview post={recommendedItem2} />
             {/* @ts-expect-error this is fine, post is a diffrent type but they lign up */}
-            <BlogPostPreview post={recommendedItem3} />
+            <ItemPreview post={recommendedItem3} />
             {/* @ts-expect-error this is fine, post is a diffrent type but they lign up */}
-            <BlogPostPreview post={recommendedItem4} />
+            <ItemPreview post={recommendedItem4} />
           </div>
         )
       }

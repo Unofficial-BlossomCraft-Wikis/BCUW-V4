@@ -3,7 +3,7 @@ import Layout from '@/layouts/fullPageBox.astro';
 import Pagination from "@/components/paginationComponent.astro";
 import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
 import type { GetStaticPathsOptions, Page } from "astro";
-import BlogPostPreview from "./_components/BlogPostPreview.astro"
+import CratePreview from "./_components/CratePreview.astro";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 	const posts = [...(await getCollection('crates'))];
@@ -37,7 +37,7 @@ const allPages = [...Array(page.lastPage).keys()].map((num) => {
 			<div class="flex gap-2 flex-wrap flex-row w-full p-2">
 				{
 					page.data.length > 0 ? (page.data.map((post) => (
-						<BlogPostPreview post={post} />
+						<CratePreview post={post} />
 					))) : (<h2 class="prose-h2">There are no crates</h2>)
 				}
 			</div>

@@ -3,7 +3,7 @@ import Layout from '@/layouts/fullPageBox.astro';
 import Pagination from "@/components/paginationComponent.astro";
 import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
 import type { GetStaticPathsOptions, Page } from "astro";
-import BlogPostPreview from "./_components/BlogPostPreview.astro"
+import ItemPreview from "./_components/ItemPreview.astro";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 	const posts = [...(await getCollection('bcitems'))];
@@ -40,7 +40,7 @@ const allPages = [...Array(page.lastPage).keys()].map((num) => {
 				{
 					page.data.length > 0 ? (page.data.map((post) => (
 						// @ts-expect-error post has two diffrent types that align enough to work
-						<BlogPostPreview post={post} />
+						<ItemPreview post={post} />
 					))) : (<h2 class="prose-h2">There are no items</h2>)
 				}
 			</div>

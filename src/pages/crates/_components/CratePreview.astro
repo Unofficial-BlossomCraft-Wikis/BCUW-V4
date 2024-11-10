@@ -3,6 +3,7 @@ import { format } from "date-fns";
 import { resolveCoverImage } from "@/content/blog/_resolveImages.js";
 import { randomFromArray } from "@/lib/random";
 import CDN from "@components/CDN.astro";
+import { Badge } from "@components/ui/badge";
 
 export type Props = {
 	post: {
@@ -37,15 +38,11 @@ const { post } = Astro.props;
 				post.data.tags.map((tag) => {
 					if (tag === "infinite crate") {
 						return (
-						<span class=" text-ranks-immortal font-bold text-sm">
-							{tag}
-						</span>
+						  <Badge variant="immortal" className="no-underline">{tag}</Badge>
 						)
 					}
 					return (
-						<span class="bg-gradient-to-r from-blue-500 to-pink-500 bg-clip-text text-transparent font-bold text-sm">
-							{tag}
-						</span>
+						<Badge className="no-underline">{tag}</Badge>
 					)
 				})
 			}

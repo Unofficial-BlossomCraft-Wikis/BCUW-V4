@@ -37,23 +37,35 @@ if (data.crate) {
     (items) => items.filter(Boolean) as CollectionEntry<"bcitems">[],
 );
   recommendedItem1 = randomFromArray(items)
+  // @ts-expect-error if this code is running, the vars are defined (would give an possibly 'undefined' error otherwise)
+  while (recommendedItem1.slug === post.slug) {
+    recommendedItem1 = randomFromArray(items)
+  }
   recommendedItem2 = randomFromArray(items)
-  while (recommendedItem1.slug === recommendedItem2.slug) {
+  // @ts-expect-error if this code is running, the vars are defined (would give an possibly 'undefined' error otherwise)
+  while (recommendedItem2.slug === post.slug || recommendedItem1.slug === recommendedItem2.slug) {
     recommendedItem2 = randomFromArray(items)
   }
 } else {
   recommendedItem1 = randomFromArray(allItems)
+  // @ts-expect-error if this code is running, the vars are defined (would give an possibly 'undefined' error otherwise)
+  while (recommendedItem1.slug === post.slug) {
+    recommendedItem1 = randomFromArray(allItems)
+  }
   recommendedItem2 = randomFromArray(allItems)
-  while (recommendedItem1.slug === recommendedItem2.slug) {
+  // @ts-expect-error if this code is running, the vars are defined (would give an possibly 'undefined' error otherwise)
+  while (recommendedItem2.slug === post.slug || recommendedItem1.slug === recommendedItem2.slug) {
     recommendedItem2 = randomFromArray(allItems)
   }
 }
 recommendedItem3 = randomFromArray(allItems)
-while (recommendedItem3.slug === recommendedItem1.slug || recommendedItem3.slug === recommendedItem2.slug) {
+// @ts-expect-error if this code is running, the vars are defined (would give an possibly 'undefined' error otherwise)
+while (recommendedItem3.slug === post.slug || recommendedItem1.slug === recommendedItem3.slug || recommendedItem2.slug === recommendedItem3.slug) {
   recommendedItem3 = randomFromArray(allItems)
 }
 recommendedItem4 = randomFromArray(allItems)
-while (recommendedItem4.slug === recommendedItem1.slug || recommendedItem4.slug === recommendedItem2.slug || recommendedItem4.slug === recommendedItem3.slug) {
+// @ts-expect-error if this code is running, the vars are defined (would give an possibly 'undefined' error otherwise)
+while (recommendedItem4.slug === post.slug || recommendedItem1.slug === recommendedItem4.slug || recommendedItem2.slug === recommendedItem4.slug || recommendedItem3.slug === recommendedItem4.slug) {
   recommendedItem4 = randomFromArray(allItems)
 }
 ---
@@ -116,22 +128,30 @@ while (recommendedItem4.slug === recommendedItem1.slug || recommendedItem4.slug 
           <>
             <h2 class="noborder">Also from the {crateData.data.title}:</h2>
             <div class="flex gap-2 flex-wrap flex-col w-full p-2">
+              {/* @ts-expect-error this is fine, post is a diffrent type but they lign up */}
               <BlogPostPreview post={recommendedItem1} />
+              {/* @ts-expect-error this is fine, post is a diffrent type but they lign up */}
               <BlogPostPreview post={recommendedItem2} />
             </div>
             <Separator />
             <h2 class="noborder">Explore These Items:</h2>
             <div class="flex gap-2 flex-wrap flex-col w-full p-2">
+              {/* @ts-expect-error this is fine, post is a diffrent type but they lign up */}
               <BlogPostPreview post={recommendedItem3} />
+              {/* @ts-expect-error this is fine, post is a diffrent type but they lign up */}
               <BlogPostPreview post={recommendedItem4} />
             </div>
           </>
         ) : (
           <h2 class="noborder">Explore These Items:</h2>
           <div class="flex gap-2 flex-wrap flex-col w-full p-2">
+              {/* @ts-expect-error this is fine, post is a diffrent type but they lign up */}
             <BlogPostPreview post={recommendedItem1} />
+            {/* @ts-expect-error this is fine, post is a diffrent type but they lign up */}
             <BlogPostPreview post={recommendedItem2} />
+            {/* @ts-expect-error this is fine, post is a diffrent type but they lign up */}
             <BlogPostPreview post={recommendedItem3} />
+            {/* @ts-expect-error this is fine, post is a diffrent type but they lign up */}
             <BlogPostPreview post={recommendedItem4} />
           </div>
         )

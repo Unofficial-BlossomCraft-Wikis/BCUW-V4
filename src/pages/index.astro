@@ -1,5 +1,7 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from "@/layouts/fullPageBox.astro";
+const allItems = [...(await getCollection('bcitems'))];
 ---
 
 <Layout>
@@ -27,6 +29,11 @@ import Layout from "@/layouts/fullPageBox.astro";
 					width={400}
 					height={400}
 				/>
+			</div>
+		</div>
+		<div class="flex flex-row flex-wrap gap-2">
+			<div class="flex flex-col gap-2">
+				<h2 class="prose-h2 noborder">Explore These Items:</h2>
 			</div>
 		</div>
 	</main>

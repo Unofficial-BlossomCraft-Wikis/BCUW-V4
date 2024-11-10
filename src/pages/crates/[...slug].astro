@@ -31,8 +31,8 @@ const items = await Promise.all(
 <Layout title={data.title} description={""}>
   <article class=" container mx-auto max-w-screen-lg prose">
     <h1 id="crate-title">{data.title}</h1>
-    <time datetime={data.release.toISOString()}>
-      Released: {format(post.data.release, "MMMM d, yyyy h:mm a")}
+    <time datetime={data.release.toISOString()} id="release-time">
+      Released: {format(post.data.release, "MMMM d, yyyy")} <!-- TODO: Make client format this -->
     </time>
     <Separator />
     <h2 class="noborder">Crate Preview:</h2>

@@ -21,7 +21,7 @@ const itembcCollection = defineCollection({
       item: z.string(),
     }),
     type: z.enum(["magic/infinite", "weapon", "armor", "consumable", "tool"]),
-    crate: reference("crates"),
+    crate: reference("crates").optional(),
     rarity: z.enum(["common", "uncommon", "rare", "epic", "legendary"]).optional(),
     enchantments: z.array(z.string()).optional(),
     unmodifiable: z.boolean().optional(),

@@ -106,20 +106,6 @@
   body {
     @apply bg-background text-foreground;
   }
-  /* These styles are from shop.blossomcraft.org with a few changes */
-
-  ::-webkit-scrollbar-track {
-    background: hsla(var(--background), 0.6);
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: hsl(var(--background));
-    border-radius: 4px;
-  }
-
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
 }
 
 @layer utilities {
@@ -133,6 +119,9 @@
   .prose h2,
   .prose-h2 {
     @apply scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0;
+  }
+  .prose .noborder {
+    @apply border-none;
   }
   .prose h3,
   .prose-h3 {

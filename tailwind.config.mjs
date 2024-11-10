@@ -88,6 +88,24 @@ export default {
             DEFAULT: "var(--pancake)",
             foreground: "var(--pancake-foreground)",
           },
+          servers: {
+            cherry: {
+              DEFAULT: 'var(--cherry)',
+              foreground: 'var(--cherry-foreground)'
+            },
+            spirit: {
+              DEFAULT: 'var(--spirit)',
+              foreground: 'var(--spirit-foreground)'
+            },
+            lotus: {
+              DEFAULT: 'var(--lotus)',
+              foreground: 'var(--lotus-foreground)'
+            },
+            tulip: {
+              DEFAULT: 'var(--tulip)',
+              foreground: 'var(--tulip-foreground)'
+            }
+          },
         },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

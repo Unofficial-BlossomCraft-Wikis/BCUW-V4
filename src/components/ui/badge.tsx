@@ -15,6 +15,16 @@ const badgeVariants = cva(
         destructive:
           "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
         outline: "text-foreground",
+        celestial: "bg-ranks-celestial text-ranks-celestial-foreground",
+        immortal: "bg-ranks-immortal text-ranks-immortal-foreground",
+        emperor: "bg-ranks-emperor text-ranks-emperor-foreground",
+        shogun: "bg-ranks-shogun text-ranks-shogun-foreground",
+        samurai: "bg-ranks-samurai text-ranks-samurai-foreground",
+        pancake: "bg-ranks-pancake text-ranks-pancake-foreground",
+        cherry: "bg-servers-cherry text-servers-cherry-foreground",
+        spirit: "bg-servers-spirit text-servers-spirit-foreground",
+        lotus: "bg-servers-lotus text-servers-lotus-foreground",
+        tulip: "bg-servers-tulip text-servers-tulip-foreground",
       },
     },
     defaultVariants: {

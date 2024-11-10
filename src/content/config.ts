@@ -22,10 +22,11 @@ const itembcCollection = defineCollection({
     }),
     type: z.enum(["magic/infinite", "weapon", "armor", "consumable", "tool"]),
     crate: reference("crates"),
-    rarity: z.enum(["common", "uncommon", "rare", "epic", "legendary"]),
-    enchantments: z.array(z.string()),
-    unmodifiable: z.boolean(),
-    unbreaking: z.boolean(),
+    rarity: z.enum(["common", "uncommon", "rare", "epic", "legendary"]).optional(),
+    enchantments: z.array(z.string()).optional(),
+    unmodifiable: z.boolean().optional(),
+    unbreaking: z.boolean().optional(),
+    winChance: z.number().optional(),
   }),
 });
 
@@ -44,7 +45,6 @@ const itemmcollection = defineCollection({
       "building",
       "other",
     ]),
-    crate: reference("crates"),
   }),
 });
 
@@ -53,8 +53,12 @@ const crateCollection = defineCollection({
     title: z.string(),
     release: z.date(),
     cratePreview: z.array(z.string()),
-    items: z.array(z.string()),
+    items: z.array(reference("bcitems")),
     tags: z.array(z.string()),
+    warpKeyShopPurchasable: z.boolean().optional().default(true),
+    warpKeyShopPrice: z.number().optional(),
+    shopPurchasable: z.boolean().default(false),
+    shopPrice: z.number().optional(),
   }),
 });
 

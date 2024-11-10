@@ -5,9 +5,10 @@ interface CDNProps {
   alt: string;
   copyurl?: string;
   copy?: boolean;
+  divClassName?: string;
+  imgClassName?: string;
 }
-
-export default function CDNBase({ url, alt, copyurl, copy }: CDNProps) {
+export default function CDNBase({ url, alt, copyurl, copy = true, divClassName, imgClassName }: CDNProps) {
   const [copied, setCopied] = useState(false); // State to handle copied message
   const [fadeOut, setFadeOut] = useState(false); // State for fade-out effect
 
@@ -40,7 +41,7 @@ export default function CDNBase({ url, alt, copyurl, copy }: CDNProps) {
     position: "absolute",
     top: "-10px",
     right: "0",
-    backgroundColor: "var(--ifm-color-primary)",
+    backgroundColor: "var(--cherry)",
     color: "white",
     padding: "5px",
     borderRadius: "5px",
@@ -50,8 +51,8 @@ export default function CDNBase({ url, alt, copyurl, copy }: CDNProps) {
   };
 
   return (
-    <div style={{ position: "relative", display: "inline-block" }}>
-      <img src={img_url} alt={alt} onContextMenu={handleRightClick} />
+    <div style={{ position: "relative", display: "inline-block" }} className={divClassName}>
+      <img src={img_url} alt={alt} onContextMenu={handleRightClick} className={imgClassName} />
       {copied && <span style={messageStyle}>Copied URL!</span>}
     </div>
   );

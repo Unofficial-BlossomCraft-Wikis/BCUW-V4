@@ -158,10 +158,6 @@
   .prose-ol {
     @apply my-6 ml-6 list-decimal [&>li]:mt-2;
   }
-  .prose code,
-  .prose-code {
-    @apply relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold;
-  }
   .prose a,
   .prose-a {
     @apply text-primary underline hover:text-primary/90;

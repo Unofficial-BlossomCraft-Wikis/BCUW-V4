@@ -63,6 +63,32 @@ export default {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
         },
+        ranks: {
+          celestial: {
+            DEFAULT: "var(--celestial)",
+            foreground: "var(--celestial-foreground)",
+          },
+          immortal: {
+            DEFAULT: "var(--immortal)",
+            foreground: "var(--immortal-foreground)",
+          },
+          emperor: {
+            DEFAULT: "var(--emperor)",
+            foreground: "var(--emperor-foreground)",
+          },
+          shogun: {
+            DEFAULT: "var(--shogun)",
+            foreground: "var(--shogun-foreground)",
+          },
+          samurai: {
+            DEFAULT: "var(--samurai)",
+            foreground: "var(--samurai-foreground)",
+          },
+          pancake: {
+            DEFAULT: "var(--pancake)",
+            foreground: "var(--pancake-foreground)",
+          },
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

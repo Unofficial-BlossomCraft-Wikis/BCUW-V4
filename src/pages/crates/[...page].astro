@@ -6,14 +6,10 @@ import type { GetStaticPathsOptions, Page } from "astro";
 import BlogPostPreview from "./_components/BlogPostPreview.astro"
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-	// 	const posts = [...(await getCollection("blog")), ...(await getCollection("updates"))];
-	const posts = [...(await getCollection('blog', ({ data }) => {
-  // return import.meta.env.PROD ? data.isDraft !== true : true;
-  return data.isDraft !== true;
-	}))];
+	const posts = [...(await getCollection('crates'))];
 	if (posts) {
 		const sortedPosts = posts.sort(
-			(a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime(),
+			(a, b) => b.data.release.getTime() - a.data.release.getTime(),
 		);
 
 		return paginate(sortedPosts, { pageSize: 5 });
@@ -23,11 +19,11 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 }
 
 const { page } = Astro.props as {
-	page: Page<CollectionEntry<"blog">>;
+	page: Page<CollectionEntry<"crates">>;
 };
 
 const allPages = [...Array(page.lastPage).keys()].map((num) => {
-	return `/blog${num === 0 ? "" : `/${String(num + 1)}`}`;
+	return `/crates${num === 0 ? "" : `/${String(num + 1)}`}`;
 });
 
 // const allPosts = await getCollection("blog"); // unused
@@ -37,18 +33,16 @@ const allPages = [...Array(page.lastPage).keys()].map((num) => {
 <Layout title="Blog" description='placeholder!'>
 	<main class="w-full">
     <article class="border p-4 rounded-lg shadow bg-sidebar text-sidebar-foreground border-sidebar-border text-center">
-      <h1 class="prose-h1">BCUW Blog</h1>
+      <h1 class="prose-h1">Crates</h1>
     </article>
     <div class="flex flex-col items-center gap-2 pt-2">
-			<ul class="flex flex-col gap-2 list-none w-full">
+			<div class="flex gap-2 flex-wrap flex-row w-full">
 				{
 					page.data.length > 0 ? (page.data.map((post) => (
-						<li>
-							<BlogPostPreview post={post} />
-						</li>
-					))) : (<h2 class="prose-h2">There are no posts</h2>)
+						<BlogPostPreview post={post} />
+					))) : (<h2 class="prose-h2">There are no crates</h2>)
 				}
-			</ul>
+			</div>
       {
         allPages.length > 1 && (
         <Pagination restRoute allPages={allPages} page={page} class="mx-auto" />

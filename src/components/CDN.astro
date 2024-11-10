@@ -1,0 +1,13 @@
+---
+interface Props {
+  id: string;
+  alt: string;
+  copyurl?: string;
+  copy?: boolean;
+}
+
+const { id, alt, copyurl, copy } = Astro.props;
+import CDNBase from "../components/CDNBase";
+---
+
+<CDNBase url={`https://utfs.io/a/co6j4hk884/${id}`} alt={alt} copyurl={copyurl} copy={copy} />

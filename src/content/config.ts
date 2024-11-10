@@ -17,9 +17,8 @@ const itembcCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     images: z.object({
-      mono: z.string().url(),
-      color: z.string().url(),
-      itemslot: z.string().url(),
+      color: z.string(),
+      item: z.string(),
     }),
     type: z.enum(["magic/infinite", "weapon", "armor", "consumable", "tool"]),
     crate: reference("crates"),
@@ -34,8 +33,8 @@ const itemmcollection = defineCollection({
   schema: z.object({
     title: z.string(),
     images: z.object({
-      mono: z.string().url(),
-      color: z.string().url(),
+      item: z.string(),
+      color: z.string(),
     }),
     type: z.enum([
       "weapon",
@@ -52,8 +51,10 @@ const itemmcollection = defineCollection({
 const crateCollection = defineCollection({
   schema: z.object({
     title: z.string(),
-    release: z.string().transform((val) => new Date(val)),
+    release: z.date(),
+    cratePreview: z.array(z.string()),
     items: z.array(z.string()),
+    tags: z.array(z.string()),
   }),
 });
 

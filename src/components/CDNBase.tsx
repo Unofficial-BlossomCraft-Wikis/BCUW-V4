@@ -52,7 +52,7 @@ export default function CDNBase({ url, alt, copyurl, copy = true, divClassName, 
 
   return (
     <div style={{ position: "relative", display: "inline-block" }} className={divClassName}>
-      <img src={img_url} alt={alt} onContextMenu={handleRightClick} className={imgClassName} />
+      <img src={img_url} alt={alt} onContextMenu={handleRightClick} className={imgClassName} loading="lazy" />
       {copied && <span style={messageStyle}>Copied URL!</span>}
     </div>
   );

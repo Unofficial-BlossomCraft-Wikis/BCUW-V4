@@ -40,6 +40,9 @@ recommendedBlogPosts = shuffledBlogPosts.slice(0, Math.min(5, shuffledBlogPosts.
 							<span class="mention">@🌸 Altie122</span>
 						</>
 				</p>
+				<p>
+					Now with a total of <span class="text-ranks-celestial">{allItems.length}</span> items and <span class="text-ranks-celestial">{allCrates.length}</span> crates and counting!
+				</p>
 			</div>
 			<div class="flex items-center justify-center md:basis-1/2">
 				<img
@@ -60,7 +63,6 @@ recommendedBlogPosts = shuffledBlogPosts.slice(0, Math.min(5, shuffledBlogPosts.
 				<div class="flex gap-2 flex-wrap flex-col w-full p-2">
 					{
 						recommendedItems.map((item) => (
-							// @ts-expect-error post has two diffrent types that align enough to work
 							<ItemPreview post={item} />
 						))
 					}

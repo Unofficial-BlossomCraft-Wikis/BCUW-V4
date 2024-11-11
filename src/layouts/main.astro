@@ -41,6 +41,19 @@ import '@/styles/starlight/asides.css'
 	});
 	observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 </script>
+<script is:inline>
+	document.addEventListener("DOMContentLoaded", () => {
+  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+  // Check if the user is on an iPhone or iPad
+  const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+
+  if (isIOS) {
+    // Apply a specific class or attribute for iOS devices
+    document.documentElement.classList.add("ios-device");
+  }
+});
+</script>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
@@ -49,7 +62,7 @@ import '@/styles/starlight/asides.css'
 		<meta name="generator" content={Astro.generator} />
 		<title>BCUW</title>
 	</head>
-	<body class="h-screen w-screen overflow-hidden">
+	<body class="h-svh w-screen overflow-hidden">
     <Layout client:only="react">
       <slot />
     </Layout>

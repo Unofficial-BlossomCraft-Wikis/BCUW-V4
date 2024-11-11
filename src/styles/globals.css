@@ -103,12 +103,15 @@
   * {
     @apply border-border;
   }
-  body {
+  html {
     @apply bg-background text-foreground;
   }
 }
 
 @layer utilities {
+  .ios-device .extra-top-padding {
+    @apply pt-[6rem];
+  }
   .prose {
     @apply container mx-auto px-4 pt-8 pb-16 sm:px-6 lg:px-8 max-w-[1024px];
   }

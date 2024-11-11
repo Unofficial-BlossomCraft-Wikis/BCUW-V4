@@ -68,9 +68,9 @@ const items = await Promise.all(
         items.map((item) => {
           return (
             <div>
-              <a href={`/items/${item.slug}/`} class="flex flex-row gap-2 items-center flex-wrap">
+              <a href={`/items/${item.slug.replaceAll("/", "-")}/`} class="flex flex-row gap-2 items-center flex-wrap">
                 <CDN id={item.data.images.item} alt={item.data.title} />
-                <h2 class="noborder" id={item.slug}>{item.data.title}</h2>
+                <h2 class="noborder" id={item.slug.replaceAll("/", "-")}>{item.data.title}</h2>
                 <div class="flex flex-col gap-2">
                 {
                   item.data.type === "magic/infinite" ? (

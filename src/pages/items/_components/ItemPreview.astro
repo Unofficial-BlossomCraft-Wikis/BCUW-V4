@@ -25,13 +25,8 @@ export type Props = {
 const { post } = Astro.props;
 ---
 <article class="border p-4 duration-300 ease-out focus-within:outline hover:bg-sidebar rounded-lg shadow flex-shrink flex-grow">
-	<a
-		href={`/crates/${post.slug}/`}
-		data-astro-prefetch
-		class="block outline-none"
-	>
 	<div>
-		<a href={`/items/${post.slug}/`} class="flex flex-row gap-2 items-center flex-wrap">
+		<a href={`/items/${post.slug.replaceAll("/", "-")}/`} class="flex flex-row gap-2 items-center flex-wrap">
 			<CDN id={post.data.images.item} alt={post.data.title} />
 			<h2 class="noborder" id={post.slug}>{post.data.title}</h2>
 			<div class="flex flex-col gap-2">
@@ -63,5 +58,4 @@ const { post } = Astro.props;
 			}
 		</a>
 	</div>
-</a>
 </article>

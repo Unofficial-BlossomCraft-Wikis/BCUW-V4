@@ -16,7 +16,7 @@ export async function getStaticPaths() {
 	const blog = await getCollection("bcitems");
 
 	return blog.map((post) => ({
-		params: { slug: post.slug },
+		params: { slug: post.slug.replaceAll("/", "-") },
 		props: { post },
 	}));
 }

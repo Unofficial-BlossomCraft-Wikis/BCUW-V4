@@ -27,6 +27,7 @@ import {
   Server,
   Image,
   ScrollText,
+  BookUser,
 } from "lucide-react";
 import {
   Collapsible,
@@ -194,6 +195,14 @@ export function AppSidebar() {
             <CollapsibleContent>
               <SidebarGroupContent>
                 <SidebarMenu>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton asChild>
+                      <a href='/ranks'>
+                        <BookUser />
+                        <span>Ranks</span>
+                      </a>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild>
                       <a href='/crates'>

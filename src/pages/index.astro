@@ -23,14 +23,18 @@ recommendedCrates = shuffledCrates.slice(0, Math.min(5, shuffledCrates.length));
 const allBlogPosts = [...(await getCollection('blog'))];
 let recommendedBlogPosts: CollectionEntry<"blog">[] = [];
 
-const sortedBlogPosts = allBlogPosts.sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime());
+const filteredBlogPosts = allBlogPosts.filter((post) => import.meta.env.PROD ? post.data.isDraft !== true : true);
+
+const sortedBlogPosts = filteredBlogPosts.sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime());
 
 recommendedBlogPosts = sortedBlogPosts.slice(0, 5);
 
 const allTutorials = [...(await getCollection('tutorials'))];
 let recommendedTutorials: CollectionEntry<"tutorials">[] = [];
 
-const sortedTutorials = allTutorials.sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime());
+const filteredTutorials = allTutorials.filter((tutorial) => import.meta.env.PROD ? tutorial.data.isDraft !== true : true);
+
+const sortedTutorials = filteredTutorials.sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime());
 
 recommendedTutorials = sortedTutorials.slice(0, 5);
 ---
@@ -91,6 +95,7 @@ recommendedTutorials = sortedTutorials.slice(0, 5);
 				<h2 class="prose-h2 noborder text-center">Recent Blog Posts:</h2>
 				<div class="flex gap-2 flex-wrap flex-col w-full p-2">
 					{
+						recommendedBlogPosts &&
 						recommendedBlogPosts.map((item) => (
 							<BlogPostPreview post={item} />
 						))
@@ -101,6 +106,7 @@ recommendedTutorials = sortedTutorials.slice(0, 5);
 				<h2 class="prose-h2 noborder text-center">Recent Tutorials:</h2>
 				<div class="flex gap-2 flex-wrap flex-col w-full p-2">
 					{
+						recommendedTutorials &&
 						recommendedTutorials.map((item) => (
 							<TutorialPostPreview post={item} />
 						))

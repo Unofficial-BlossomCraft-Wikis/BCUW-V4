@@ -8,8 +8,7 @@ import BlogPostPreview from "./_components/TutorialPostPreview.astro";
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 	// 	const posts = [...(await getCollection("blog")), ...(await getCollection("updates"))];
 	const posts = [...(await getCollection('tutorials', ({ data }) => {
-  // return import.meta.env.PROD ? data.isDraft !== true : true;
-  return data.isDraft !== true;
+  return import.meta.env.PROD ? data.isDraft !== true : true;
 	}))];
 	if (posts) {
 		const sortedPosts = posts.sort(

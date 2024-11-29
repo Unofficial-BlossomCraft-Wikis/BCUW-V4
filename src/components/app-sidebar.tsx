@@ -28,6 +28,7 @@ import {
   Image,
   ScrollText,
   BookUser,
+  BookOpen,
 } from "lucide-react";
 import {
   Collapsible,
@@ -118,6 +119,14 @@ export function AppSidebar() {
                       <a href='/blog'>
                         <Newspaper />
                         <span>Blog</span>
+                      </a>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton asChild>
+                      <a href='/tutorials'>
+                        <BookOpen />
+                        <span>Tutorials</span>
                       </a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>

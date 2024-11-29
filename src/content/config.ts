@@ -13,6 +13,21 @@ const blogCollection = defineCollection({
   }),
 });
 
+const tutorialsCollection = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    publishDate: z.date(),
+    authors: z.array(z.string()),
+    proofreaders: z.array(z.object({name: z.string(), isAuthor: z.boolean()})).optional(),
+    footnote: z.string().optional(),
+    isDraft: z.boolean(),
+    socialImage: z.string().optional(),
+    coverImage: z.string().optional(),
+    coverImageURL: z.string().optional(),
+  }),
+});
+
 const itembcCollection = defineCollection({
   schema: z.object({
     title: z.string(),
@@ -86,4 +101,5 @@ export const collections = {
   bcitems: itembcCollection,
   crates: crateCollection,
   mcitems: itemmcollection,
+  tutorials: tutorialsCollection,
 };

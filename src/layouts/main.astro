@@ -3,6 +3,7 @@ import Layout from '@components/layout'
 import '@/styles/globals.css'
 import '@/styles/starlight/props.css'
 import '@/styles/starlight/asides.css'
+import Head from '@components/head.astro'
 ---
 <!DOCTYPE html>
 <script is:inline>
@@ -38,11 +39,7 @@ import '@/styles/starlight/asides.css'
 </script>
 <html lang="en">
 	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/png" href="/bcuwOnlyTitleSquare.png" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>BCUW</title>
+		<Head title="BCUW" description="BlossomCraft Unofficial Wiki | The community-run BlossomCraft Wiki, documenting since August 13, 2023." icon="/bcuwOnlyTitleSquare.png" banner="/bcuwTitleNormal.png" />
 	</head>
 	<body class="h-svh w-screen overflow-hidden">
     <Layout client:only="react">

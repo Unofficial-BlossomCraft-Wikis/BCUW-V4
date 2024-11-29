@@ -3,7 +3,7 @@ import { format } from "date-fns";
 import { resolveCoverImage } from "@/content/blog/_resolveImages.js";
 import { randomFromArray } from "@/lib/random";
 import CDN from "@components/CDN.astro";
-import { Badge } from "@components/ui/badge";
+import Badge, { ItemTypeBadge } from "@components/Badge";
 
 export type Props = {
 	post: {
@@ -14,7 +14,7 @@ export type Props = {
 				color: string;
 				item: string;
 			};
-			type: string;
+			type: "magic/infinite" | "weapon" | "armor" | "consumable" | "tool" | "other";
 			crate?: string;
 			rarity?: string;
 			enchantments?: string[];
@@ -31,11 +31,7 @@ const { post } = Astro.props;
 			<h2 class="noborder" id={post.slug}>{post.data.title}</h2>
 			<div class="flex flex-col gap-2">
 			{
-				post.data.type === "magic/infinite" ? (
-					<Badge variant="immortal" className="no-underline">{post.data.type}</Badge>
-				) : (
-					<Badge className="no-underline">{post.data.type}</Badge>
-				)
+				<ItemTypeBadge type={post.data.type} />
 			}
 			{
 				post.data.rarity && (

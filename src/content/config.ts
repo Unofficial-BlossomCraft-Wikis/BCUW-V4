@@ -16,13 +16,21 @@ const blogCollection = defineCollection({
 const itembcCollection = defineCollection({
   schema: z.object({
     title: z.string(),
+    release: z.date().optional(),
     images: z.object({
       color: z.string(),
+      colornotes: z.array(z.object({
+        type: z.enum(['note', 'tip', 'caution', 'danger']),
+        title: z.string().optional(),
+        content: z.string(),
+      })).optional(),
       item: z.string(),
     }),
-    type: z.enum(["magic/infinite", "weapon", "armor", "consumable", "tool"]),
+    type: z.enum(["magic/infinite", "weapon", "armor", "consumable", "tool", "other"]),
     crate: reference("crates").optional(),
-    rarity: z.enum(["common", "uncommon", "rare", "epic", "legendary"]).optional(),
+    rarity: z
+      .enum(["common", "uncommon", "rare", "epic", "legendary"])
+      .optional(),
     enchantments: z.array(z.string()).optional(),
     unmodifiable: z.boolean().optional(),
     unbreaking: z.boolean().optional(),
@@ -54,7 +62,7 @@ const crateCollection = defineCollection({
     release: z.date(),
     cratePreview: z.array(z.string()),
     items: z.array(reference("bcitems")),
-    tags: z.array(z.string()),
+    tags: z.array(z.enum(["infinite crate", "season", "lt", "holiday", "other"])),
     warpKeyShopPurchasable: z.boolean().optional().default(true),
     warpKeyShopPrice: z.number().optional(),
     shopPurchasable: z.boolean().default(false),

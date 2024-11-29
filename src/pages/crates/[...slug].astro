@@ -4,7 +4,7 @@ import Layout from '@/layouts/fullPageBox.astro';
 import { format } from "date-fns";
 import { Separator } from "@components/ui/separator";
 import CDN from "@components/CDN.astro";
-import { Badge } from "@components/ui/badge";
+import Badge, { CrateTagBadge, ItemTypeBadge } from "@components/Badge";
 
 export type Props = {
 	post: CollectionEntry<"crates">;
@@ -49,14 +49,9 @@ const items = await Promise.all(
     <h2 class="noborder">Tags:</h2>
     <div class="flex flex-wrap flex-row gap-2">
       {
-        data.tags.map((tag: string) => {
-          if (tag === "infinite crate") {
-            return (
-              <Badge variant="immortal">{tag}</Badge>
-            )
-          }
+        data.tags.map((tag: "infinite crate" | "season" | "lt" | "holiday" | "other") => {
           return (
-            <Badge>{tag}</Badge>
+            <CrateTagBadge tag={tag} />
           )
         })
       }
@@ -73,11 +68,7 @@ const items = await Promise.all(
                 <h2 class="noborder" id={item.slug.replaceAll("/", "-")}>{item.data.title}</h2>
                 <div class="flex flex-col gap-2">
                 {
-                  item.data.type === "magic/infinite" ? (
-                    <Badge variant="immortal" className="no-underline">{item.data.type}</Badge>
-                  ) : (
-                    <Badge className="no-underline">{item.data.type}</Badge>
-                  )
+                  <ItemTypeBadge type={item.data.type} />
                 }
                 </div>
               </a>

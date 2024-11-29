@@ -3,7 +3,9 @@ import { format } from "date-fns";
 import { resolveCoverImage } from "@/content/blog/_resolveImages.js";
 import { randomFromArray } from "@/lib/random";
 import CDN from "@components/CDN.astro";
-import { Badge } from "@components/ui/badge";
+import Badge, { CrateTagBadge } from "@components/Badge";
+
+type CrateTagType = "infinite crate" | "season" | "lt" | "holiday" | "other";
 
 export type Props = {
 	post: {
@@ -12,7 +14,7 @@ export type Props = {
 			title: string;
 			release: Date;
 			cratePreview: string[];
-			tags: string[];
+			tags: CrateTagType[];
 		};
 	};
 };
@@ -35,14 +37,9 @@ const { post } = Astro.props;
 		<div class="flex flex-wrap flex-col items-center flex-shrink flex-grow">
 			Tags:
 			{
-				post.data.tags.map((tag) => {
-					if (tag === "infinite crate") {
-						return (
-						  <Badge variant="immortal" className="no-underline">{tag}</Badge>
-						)
-					}
+				post.data.tags.map((tag: "infinite crate" | "season" | "lt" | "holiday" | "other") => {
 					return (
-						<Badge className="no-underline">{tag}</Badge>
+						<CrateTagBadge tag={tag} />
 					)
 				})
 			}

@@ -4,9 +4,11 @@ import Layout from '@/layouts/fullPageBox.astro';
 import { format } from "date-fns";
 import { Separator } from "@components/ui/separator";
 import CDN from "@components/CDN.astro";
-import { Badge } from "@components/ui/badge";
+import { ItemTypeBadge } from "@components/Badge";
+import Badge from "@components/Badge";
 import { randomFromArray } from "@lib/random";
 import ItemPreview from "./_components/ItemPreview.astro";
+import Aside from "@components/starlight/Aside.astro";
 
 export type Props = {
 	post: CollectionEntry<"bcitems">;
@@ -76,28 +78,48 @@ while (recommendedItem4.slug === post.slug || recommendedItem1.slug === recommen
       <h1 class="noborder" id="item-title">{data.title}</h1>
     </div>
     {
-      crateData && (
+      crateData ? (
     <time datetime={crateData.data.release.toISOString()} id="release-time">
       Released: {format(crateData.data.release, "MMMM d, yyyy")} in the <a href={`/crates/${crateData.slug}/`}>{crateData.data.title}</a>.
     </time>
-      )
+      ) : data.release ? (
+    <time datetime={data.release.toISOString()} id="release-time">
+      Released: {format(data.release, "MMMM d, yyyy")}
+    </time>
+      ) : null
     }
     <Separator />
     <h2 class="noborder">Item Lore:</h2>
-    <div class="flex flex-row flex-wrap gap-2">
+    <div class="flex flex-row flex-wrap gap-2 justify-between">
       {
         <CDN id={data.images.color} alt={data.title} imgClassName="rounded-lg" divClassName="flex-shrink flex-grow max-w-[400px]" />
       }
+      <div class="flex-shrink flex-grow max-w-[400px]">
+        {
+          data.images.colornotes &&
+          data.images.colornotes.map((colornote: any, index: number) => {
+            const totalNotes = data.images.colornotes!.length;
+            const isFirstNote = index === 0;
+            const isLastNote = index === totalNotes - 1;
+            return (
+              <Aside
+                type={colornote.type}
+                title={colornote.title}
+                topRounded={isFirstNote}
+                bottomRounded={isLastNote}
+              >
+                {colornote.content}
+              </Aside>
+            );
+          })
+        }
+      </div>
     </div>
     <Separator />
     <h2 class="noborder">Type & Rarity:</h2>
     <div class="flex flex-wrap flex-row gap-2">
       {
-        data.type === "magic/infinite" ? (
-          <Badge variant="immortal" className="no-underline">{data.type}</Badge>
-        ) : (
-          <Badge className="no-underline">{data.type}</Badge>
-        )
+        <ItemTypeBadge type={data.type} />
       }
       {
         data.rarity && (

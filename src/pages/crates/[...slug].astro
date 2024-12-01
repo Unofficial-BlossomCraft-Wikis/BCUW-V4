@@ -12,7 +12,6 @@ export type Props = {
 
 export async function getStaticPaths() {
 	const blog = await getCollection("crates");
-  // @ts-expect-error annoying type safety stuff go bye bye
 	return blog.map((post) => ({
 		params: { slug: post.slug },
 		props: { post },

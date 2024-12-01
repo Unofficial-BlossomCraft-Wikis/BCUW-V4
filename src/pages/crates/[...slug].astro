@@ -46,15 +46,17 @@ const items = await Promise.all(
       }
     </div>
     <Separator />
-    <h2 class="noborder">Tags:</h2>
-    <div class="flex flex-wrap flex-row gap-2">
-      {
-        data.tags.map((tag: "infinite crate" | "season" | "lt" | "holiday" | "other") => {
-          return (
-            <CrateTagBadge tag={tag} />
-          )
-        })
-      }
+    <div>
+      <h2 class="noborder">Tags:</h2>
+      <div class="flex flex-wrap flex-row gap-2">
+        {
+          data.tags.map((tag: "infinite crate" | "season" | "lt" | "holiday" | "other") => {
+            return (
+              <CrateTagBadge tag={tag} />
+            )
+          })
+        }
+      </div>
     </div>
     <Separator />
     <h2 class="noborder">Items:</h2>
@@ -65,7 +67,7 @@ const items = await Promise.all(
             <div>
               <a href={`/items/${item.slug.replaceAll("/", "-")}/`} class="flex flex-row gap-2 items-center flex-wrap">
                 <CDN id={item.data.images.item} alt={item.data.title} />
-                <h2 class="noborder" id={item.slug.replaceAll("/", "-")}>{item.data.title}</h2>
+                <h2 class="noborder" id={item.slug.replaceAll("/", "-")}>{item.data.title} {item.data.cratequantity && `(X${item.data.cratequantity})`}</h2>
                 <div class="flex flex-col gap-2">
                 {
                   <ItemTypeBadge type={item.data.type} />

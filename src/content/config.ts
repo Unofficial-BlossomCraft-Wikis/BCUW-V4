@@ -41,8 +41,9 @@ const itembcCollection = defineCollection({
       })).optional(),
       item: z.string(),
     }),
-    type: z.enum(["magic/infinite", "weapon", "armor", "consumable", "tool", "other"]),
+    type: z.enum(["magic/infinite", "weapon", "armor", "consumable", "tool", "key", "other"]),
     crate: reference("crates").optional(),
+    cratequantity: z.number().optional(),
     rarity: z
       .enum(["common", "uncommon", "rare", "epic", "legendary"])
       .optional(),
@@ -50,6 +51,9 @@ const itembcCollection = defineCollection({
     unmodifiable: z.boolean().optional(),
     unbreaking: z.boolean().optional(),
     winChance: z.number().optional(),
+    multiinstance: z.boolean().optional(),
+    multiinstanceuuid: z.string().default("00000000-0000-0000-0000-000000000000"),
+    multiinstancebaseitem: reference("bcitems").optional(),
   }),
 });
 

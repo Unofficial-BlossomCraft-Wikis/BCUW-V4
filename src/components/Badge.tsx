@@ -3,7 +3,7 @@ import { Badge } from "@components/ui/badge";
 export default Badge;
 
 interface ItemTypeBadgeProps {
-  type: "magic/infinite" | "weapon" | "armor" | "consumable" | "tool" | "other";
+  type: "magic/infinite" | "weapon" | "armor" | "consumable" | "tool" | "key" | "other";
 }
 
 interface CrateTagBadgeProps {
@@ -30,6 +30,10 @@ export function ItemTypeBadge ({ type }: ItemTypeBadgeProps) {
   } else if (type === "tool") {
     return (
       <Badge className="no-underline">{type}</Badge>
+    )
+  } else if (type === "key") {
+    return (
+      <Badge className="no-underline">key</Badge>
     )
   }
   return (

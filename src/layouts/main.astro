@@ -45,5 +45,10 @@ import Head from '@components/head.astro'
     <Layout client:only="react">
       <slot />
     </Layout>
+		{
+			process.env.NODE_ENV === 'production' && (
+				<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c601a619e3b44ae382b4fe5262cfbca2"}'></script><!-- End Cloudflare Web Analytics -->
+			)
+		}
 	</body>
 </html>

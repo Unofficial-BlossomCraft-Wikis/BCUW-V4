@@ -29,6 +29,7 @@ import {
   ScrollText,
   BookUser,
   BookOpen,
+  Eye,
 } from "lucide-react";
 import {
   Collapsible,
@@ -91,6 +92,19 @@ export function AppSidebar() {
       JSON.stringify(sidebar_collapsible_4_open)
     );
   }, [sidebar_collapsible_4_open]);
+  const [sidebar_collapsible_5_open, sidebar_collapsible_5_setOpen] =
+    React.useState(() => {
+      const savedOpenState = sessionStorage.getItem(
+        "main-sidebar-collapsible-5Open"
+      );
+      return savedOpenState ? JSON.parse(savedOpenState) : false;
+    });
+  React.useEffect(() => {
+    sessionStorage.setItem(
+      "main-sidebar-collapsible-5Open",
+      JSON.stringify(sidebar_collapsible_5_open)
+    );
+  }, [sidebar_collapsible_5_open]);
   const [sidebar_open, sidebar_setOpen] = React.useState(() => {
     const savedOpenState = sessionStorage.getItem('main-sidebarOpen');
     return savedOpenState ? JSON.parse(savedOpenState) : true;
@@ -270,6 +284,34 @@ export function AppSidebar() {
                       <a href='/logos'>
                         <Image />
                         <span>Logos</span>
+                      </a>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </CollapsibleContent>
+          </SidebarGroup>
+        </Collapsible>
+        <Collapsible
+          className='group/collapsible'
+          open={sidebar_collapsible_5_open}
+          onOpenChange={sidebar_collapsible_5_setOpen}
+        >
+          <SidebarGroup>
+            <SidebarGroupLabel asChild>
+              <CollapsibleTrigger>
+              Other
+                <ChevronDown className='ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180' />
+              </CollapsibleTrigger>
+            </SidebarGroupLabel>
+            <CollapsibleContent>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton asChild>
+                      <a href='/privacy'>
+                        <Eye />
+                        <span>Privacy</span>
                       </a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>

@@ -12,7 +12,7 @@ export type Props = {
 
 export async function getStaticPaths() {
 	const blog = await getCollection("crates");
-
+  // @ts-expect-error annoying type safety stuff go bye bye
 	return blog.map((post) => ({
 		params: { slug: post.slug },
 		props: { post },
@@ -28,7 +28,7 @@ const items = await Promise.all(
     (items) => items.filter(Boolean) as CollectionEntry<"bcitems">[],
 );
 ---
-<Layout title={data.title} description={""}>
+<Layout>
   <article class=" container mx-auto max-w-screen-lg prose">
     <h1 id="crate-title">{data.title}</h1>
     <time datetime={data.release.toISOString()} id="release-time">
@@ -60,7 +60,7 @@ const items = await Promise.all(
     </div>
     <Separator />
     <h2 class="noborder">Items:</h2>
-    <div class="grid grid-cols-1 xl:grid-cols-2 gap-2">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
       {
         items.map((item) => {
           return (

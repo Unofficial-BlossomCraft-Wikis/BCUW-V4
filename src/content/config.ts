@@ -99,6 +99,21 @@ const authors = defineCollection({
   }),
 });
 
+const announcementsCollection = defineCollection({
+  schema: z.object({
+    poster: z.string(),
+    publishDate: z.date(),
+  }),
+});
+
+const patchnotesCollection = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    publishDate: z.date(),
+  }),
+});
+
 export const collections = {
   blog: blogCollection,
   authors: authors,
@@ -106,4 +121,6 @@ export const collections = {
   crates: crateCollection,
   mcitems: itemmcollection,
   tutorials: tutorialsCollection,
+  announcements: announcementsCollection,
+  patchnotes: patchnotesCollection,
 };

@@ -26,15 +26,18 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const allItems = await getCollection("bcitems");
 const { data } = post;
-let crateData: CollectionEntry<"crates"> | null = null;
+let crateData: CollectionEntry<"crates"> | undefined = undefined;
 let recommendedItem1: CollectionEntry<"bcitems"> | undefined = undefined;
 let recommendedItem2: CollectionEntry<"bcitems"> | undefined = undefined;
 let recommendedItem3: CollectionEntry<"bcitems"> | undefined = undefined;
 let recommendedItem4: CollectionEntry<"bcitems"> | undefined = undefined;
 if (data.crate) {
-  crateData = await getEntry("crates", data.crate.slug)
+  crateData = await getEntry("crates", data.crate.id);
+  if (!crateData) {
+    throw new Error(`Crate with id ${data.crate.id} not found`);
+  }
   const items = await Promise.all(
-  crateData.data.items.map((item: any) => getEntry("bcitems", item.slug))
+  crateData.data.items.map((item: any) => getEntry("bcitems", item.id))
 ).then(
     (items) => items.filter(Boolean) as CollectionEntry<"bcitems">[],
 );
@@ -146,7 +149,7 @@ while (recommendedItem4.slug === post.slug || recommendedItem1.slug === recommen
     }
     <div>
       {
-        crateData !== null ? (
+        crateData !== undefined ? (
           <>
             <h2 class="noborder">Also from the {crateData.data.title}:</h2>
             <div class="flex gap-2 flex-wrap flex-col w-full p-2">

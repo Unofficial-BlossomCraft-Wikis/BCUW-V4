@@ -22,7 +22,7 @@ const { post } = Astro.props;
 
 const { data } = post;
 const items = await Promise.all(
-    data.items.map((item: any) => getEntry("bcitems", item.slug))
+    data.items.map((item: any) => getEntry("bcitems", item.id))
 ).then(
     (items) => items.filter(Boolean) as CollectionEntry<"bcitems">[],
 );

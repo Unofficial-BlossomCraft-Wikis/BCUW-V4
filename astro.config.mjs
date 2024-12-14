@@ -6,7 +6,7 @@ import react from "@astrojs/react";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import netlify from "@astrojs/netlify";
-const site = "https://v4.bcuw.xyz";
+const site = "https://bcuw.xyz";
 // https://astro.build/config
 export default defineConfig({
   site,

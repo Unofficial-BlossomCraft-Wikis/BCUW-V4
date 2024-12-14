@@ -2,6 +2,7 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import React from "react";
 import Navbar from "./navbar";
+import Progress from "./progressbar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = React.useState(() => {
@@ -13,6 +14,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }, [open]);
   return (
     <SidebarProvider open={open} onOpenChange={setOpen}>
+      <Progress />
       <AppSidebar />
       <main className='flex flex-col w-full h-full'>
         <Navbar />

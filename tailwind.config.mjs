@@ -26,6 +26,8 @@ export default {
           "linear-gradient(266.93deg, #F8E42E 0%, #FF7D54 100%)",
         "pink-purple-gradient":
           "linear-gradient(135deg, #FF69B4 0%, #8A2BE2 100%)",
+        "progressbar-gradient":
+          "var(--progressbar-gradient)",
       },
       borderRadius: {
         lg: "var(--radius)",

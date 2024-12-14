@@ -26,6 +26,10 @@
     --lotus-foreground: #221029;
     --tulip: #c27c0e;
     --tulip-foreground: #3a2504;
+    --progressbar-gradient: linear-gradient(
+      90deg in oklch,
+      oklch(61.89% 0.3005 317.56) 0%, oklch(74.85% 0.2612 327.8) 100%
+    );
   }
 }
 @layer base {

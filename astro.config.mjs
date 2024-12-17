@@ -15,7 +15,10 @@ export default defineConfig({
   integrations: [tailwind({
     applyBaseStyles: false,
   }), react(), mdx(), sitemap(), url122({
-    idPrefix: "bcw",
+    prefix: "bcw",
+    extraPages: [
+      "/"
+    ]
   })],
 
   output: "static",

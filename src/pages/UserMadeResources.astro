@@ -1,6 +1,5 @@
 ---
 import Layout from "@/layouts/fullPageBoxGenerated.astro";
-import { LinkCard } from "../components/hovercard.tsx";
 const frontmatter = {
   title: "User-made Resources",
 };
@@ -9,9 +8,9 @@ const frontmatter = {
 <Layout frontmatter={frontmatter}>
 
   <ul>
-    <li><LinkCard href="https://docs.google.com/spreadsheets/d/1yf47G3E3BYSiWvWH5bD7ZWq1K1-ySP766eHpFuvJwpc/edit?usp=sharing" alt="evicuo's Jobs EXP Spreadsheet" client:only="react" >evicuo's Jobs EXP Spreadsheet</LinkCard></li>
-    <li><LinkCard href="https://www.pythonanywhere.com/gists/2c0915f71ab5a67ad03ce90136d2710a/BlossomCraft%20Jobs%20Calculator/ipython/" alt="evicuo's Jobs Progress Calculator" client:only="react" >evicuo's Jobs Progress Calculator</LinkCard></li>
-    <li><LinkCard href="https://minecraftcircle.pages.dev/" alt="ZoZoCaylus's Circle Generator" client:only="react" >ZoZoCaylus's Circle Generator</LinkCard></li>
+    <li><a href="https://docs.google.com/spreadsheets/d/1yf47G3E3BYSiWvWH5bD7ZWq1K1-ySP766eHpFuvJwpc/edit?usp=sharing">evicuo's Jobs EXP Spreadsheet</a></li>
+    <li><a href="https://www.pythonanywhere.com/gists/2c0915f71ab5a67ad03ce90136d2710a/BlossomCraft%20Jobs%20Calculator/ipython/">evicuo's Jobs Progress Calculator</a></li>
+    <li><a href="https://minecraftcircle.pages.dev/">ZoZoCaylus's Circle Generator</a></li>
   </ul>
 
   <h2>Do you have a resource?</h2>

@@ -1,3 +1,4 @@
+// This feature is currently broken, if a fix isn't found, it will be removed soon.
 export const prerender = false;
 
 import puppeteer from "puppeteer";

@@ -8,6 +8,8 @@ import type { V1CratesAPIResponse } from "./crates/all.json";
 import type { V1ItemsAPIResponse } from "./items/all.json";
 import type { V1TutorialsAPIResponse } from "./tutorials/all.json";
 import type { V1AuthorsAPIResponse } from "./authors/all.json";
+import type { V1PatchnotesAPIResponse } from "./patchnotes/all.json";
+import type { V1AnnouncementsAPIResponse } from "./announcements/all.json";
 
 export const GET: APIRoute = async ({ params, request }) => {
   return new Response(
@@ -17,6 +19,8 @@ export const GET: APIRoute = async ({ params, request }) => {
       crates: await crates(),
       tutorials: await tutorials(),
       bcitems: await items(),
+      patchnotes: await patchnotes(),
+      announcements: await announcements(),
     })
   );
 };
@@ -105,6 +109,36 @@ async function blogposts() {
   const allItems = await getCollection("blog");
   const formattedItems: V1BlogAPIResponse[] = await Promise.all(
     allItems.map(async (item: CollectionEntry<"blog">) => {
+      const result = await renderMDX(item);
+      return {
+        slug: item.slug,
+        body: result,
+        metadata: item.data,
+      };
+    })
+  );
+  return formattedItems;
+}
+
+async function patchnotes() {
+  const allItems = await getCollection("patchnotes");
+  const formattedItems: V1PatchnotesAPIResponse[] = await Promise.all(
+    allItems.map(async (item: CollectionEntry<"patchnotes">) => {
+      const result = await renderMDX(item);
+      return {
+        slug: item.slug,
+        body: result,
+        metadata: item.data,
+      };
+    })
+  );
+  return formattedItems;
+}
+
+async function announcements() {
+  const allItems = await getCollection("announcements");
+  const formattedItems: V1AnnouncementsAPIResponse[] = await Promise.all(
+    allItems.map(async (item: CollectionEntry<"announcements">) => {
       const result = await renderMDX(item);
       return {
         slug: item.slug,

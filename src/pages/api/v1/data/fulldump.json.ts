@@ -5,9 +5,9 @@ import reactRenderer from "@astrojs/react/server.js";
 import mdxRenderer from "@astrojs/mdx/server.js";
 import type { V1BlogAPIResponse } from "./blog/all.json";
 import type { V1CratesAPIResponse } from "./crates/all.json";
-import type { V1AuthorsAPIResponse } from "./authors/all.json";
-import type { V1TutorialsAPIResponse } from "./tutorials/all.json";
 import type { V1ItemsAPIResponse } from "./items/all.json";
+import type { V1TutorialsAPIResponse } from "./tutorials/all.json";
+import type { V1AuthorsAPIResponse } from "./authors/all.json";
 
 export const GET: APIRoute = async ({ params, request }) => {
   return new Response(

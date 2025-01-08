@@ -57,24 +57,6 @@ const itembcCollection = defineCollection({
   }),
 });
 
-const itemmcollection = defineCollection({
-  schema: z.object({
-    title: z.string(),
-    images: z.object({
-      item: z.string(),
-      color: z.string(),
-    }),
-    type: z.enum([
-      "weapon",
-      "armor",
-      "consumable",
-      "tool",
-      "building",
-      "other",
-    ]),
-  }),
-});
-
 const crateCollection = defineCollection({
   schema: z.object({
     title: z.string(),
@@ -119,7 +101,6 @@ export const collections = {
   authors: authors,
   bcitems: itembcCollection,
   crates: crateCollection,
-  mcitems: itemmcollection,
   tutorials: tutorialsCollection,
   announcements: announcementsCollection,
   patchnotes: patchnotesCollection,

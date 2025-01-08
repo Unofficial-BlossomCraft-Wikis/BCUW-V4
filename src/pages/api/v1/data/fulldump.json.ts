@@ -14,6 +14,7 @@ import type { V1AnnouncementsAPIResponse } from "./announcements/all.json";
 export const GET: APIRoute = async ({ params, request }) => {
   return new Response(
     JSON.stringify({
+      compatibilitydate: Date.now(),
       authors: await authors(),
       blogposts: await blogposts(),
       crates: await crates(),

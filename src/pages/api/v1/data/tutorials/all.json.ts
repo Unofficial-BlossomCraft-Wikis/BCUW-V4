@@ -1,47 +1,58 @@
 import type { APIRoute } from "astro";
+import { experimental_AstroContainer } from "astro/container";
 import { getCollection, type CollectionEntry, render } from "astro:content";
+import reactRenderer from "@astrojs/react/server.js";
+import mdxRenderer from "@astrojs/mdx/server.js";
+import { z } from "astro:content";
 
-type V1APIResponse = {
-  slug: string;
-  body: any;
-  metadata: {
-    title: string;
-    description: string;
-    publishDate: Date;
-    authors: string[];
-    proofreaders?: { name: string; isAuthor: boolean }[];
-    footnote?: string;
-    isDraft: boolean;
-    socialImage?: string;
-    coverImage?: string;
-    coverImageURL?: string;
-  };
-};
+const V1APIResponse = z.object({
+  slug: z.string(),
+  body: z.string(),
+  metadata: z.object({
+    title: z.string(),
+    description: z.string(),
+    publishDate: z.date(),
+    authors: z.array(z.string()),
+    proofreaders: z.array(z.object({name: z.string(), isAuthor: z.boolean()})).optional(),
+    footnote: z.string().optional(),
+    isDraft: z.boolean(),
+    socialImage: z.string().optional(),
+    coverImage: z.string().optional(),
+    coverImageURL: z.string().optional(),
+  }),
+});
 
 export const GET: APIRoute = async ({ params, request }) => {
   const allItems = await getCollection("tutorials");
   // @ts-expect-error error be gone
-  const formattedItems: V1APIResponse = await Promise.all(allItems.map(
-    async (item: CollectionEntry<"tutorials">) => {
-      const {Content} = await render(item);
+  const formattedItems: z.infer<typeof V1APIResponse>[] = await Promise.all(
+    allItems.map(async (item: CollectionEntry<"tutorials">) => {
+      if (item.data.isDraft) {
+        return null;
+      }
+      const container = await experimental_AstroContainer.create();
+      container.addServerRenderer({
+        renderer: mdxRenderer,
+        name: "",
+      });
+
+      container.addServerRenderer({
+        renderer: reactRenderer,
+        name: "",
+      });
+      container.addClientRenderer({
+        name: "@astrojs/react",
+        entrypoint: "@astrojs/react/client.js",
+      });
+      const { Content } = await render(item);
+      const result = await container.renderToString(Content);
       return {
         slug: item.slug,
-        body: Content,
-        metadata: {
-          title: item.data.title,
-          description: item.data.description,
-          publishDate: item.data.publishDate,
-          authors: item.data.authors,
-          proofreaders: item.data.proofreaders,
-          footnote: item.data.footnote,
-          isDraft: item.data.isDraft,
-          socialImage: item.data.socialImage,
-          coverImage: item.data.coverImage,
-          coverImageURL: item.data.coverImageURL,
-        },
+        body: result,
+        metadata: item.data,
       };
-    }
-  ));
+    })
+  );
   console.log(formattedItems);
   return new Response(
     JSON.stringify({
@@ -50,4 +61,4 @@ export const GET: APIRoute = async ({ params, request }) => {
   );
 };
 
-export type V1TutorialsAPIResponse = V1APIResponse;
+export type V1TutorialsAPIResponse = z.infer<typeof V1APIResponse>;

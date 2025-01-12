@@ -1,13 +1,22 @@
 {
-  "name": "bcuw-monorepo",
-  "version": "1.0.0",
-  "description": "The BCUW monorepo",
+	"name": "bcuw-monorepo",
+	"version": "1.0.0",
+	"description": "The BCUW monorepo",
 	"scripts": {
 		"website:dev": "pnpm --filter bcuw-v4-website dev",
-    "website:build": "pnpm --filter bcuw-v4-website build",
-    "website:check": "pnpm --filter bcuw-v4-website check"
+		"website:build": "pnpm --filter bcuw-v4-website build",
+		"website:check": "pnpm --filter bcuw-v4-website check",
+		"api:dev": "pnpm --filter bcuw-api dev",
+		"api:build": "pnpm --filter bcuw-api build",
+		"api:check": "pnpm --filter bcuw-api check",
+    "full:dev": "concurrently --kill-others -p \"[{name}]\" -n \"website,api\" -c \"bgBlue.bold,bgMagenta.bold\" \"pnpm --filter bcuw-v4-website dev\" \"pnpm --filter bcuw-api dev\"",
+    "full:build": "concurrently --kill-others -p \"[{name}]\" -n \"website,api\" -c \"bgBlue.bold,bgMagenta.bold\" \"pnpm --filter bcuw-v4-website build\" \"pnpm --filter bcuw-api build\"",
+    "full:check": "concurrently --kill-others -p \"[{name}]\" -n \"website,api\" -c \"bgBlue.bold,bgMagenta.bold\" \"pnpm --filter bcuw-v4-website check\" \"pnpm --filter bcuw-api check\""
 	},
-  "keywords": [],
-  "author": "Altie122",
-  "license": "MIT"
+	"keywords": [],
+	"author": "Altie122",
+	"license": "MIT",
+	"devDependencies": {
+		"concurrently": "^9.1.2"
+	}
 }

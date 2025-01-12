@@ -9,9 +9,9 @@
 		"api:dev": "pnpm --filter bcuw-api dev",
 		"api:build": "pnpm --filter bcuw-api build",
 		"api:check": "pnpm --filter bcuw-api check",
-    "full:dev": "concurrently --kill-others -p \"[{name}]\" -n \"website,api\" -c \"bgBlue.bold,bgMagenta.bold\" \"pnpm --filter bcuw-v4-website dev\" \"pnpm --filter bcuw-api dev\"",
-    "full:build": "concurrently --kill-others -p \"[{name}]\" -n \"website,api\" -c \"bgBlue.bold,bgMagenta.bold\" \"pnpm --filter bcuw-v4-website build\" \"pnpm --filter bcuw-api build\"",
-    "full:check": "concurrently --kill-others -p \"[{name}]\" -n \"website,api\" -c \"bgBlue.bold,bgMagenta.bold\" \"pnpm --filter bcuw-v4-website check\" \"pnpm --filter bcuw-api check\""
+    "web+api:dev": "concurrently --kill-others -p \"[{name}]\" -n \"website,api\" -c \"bgBlue.bold,bgMagenta.bold\" \"pnpm --filter bcuw-v4-website dev\" \"pnpm --filter bcuw-api dev\"",
+    "web+api:build": "concurrently --kill-others -p \"[{name}]\" -n \"website,api\" -c \"bgBlue.bold,bgMagenta.bold\" \"pnpm --filter bcuw-v4-website build\" \"pnpm --filter bcuw-api build\"",
+    "web+api:check": "concurrently --kill-others -p \"[{name}]\" -n \"website,api\" -c \"bgBlue.bold,bgMagenta.bold\" \"pnpm --filter bcuw-v4-website check\" \"pnpm --filter bcuw-api check\""
 	},
 	"keywords": [],
 	"author": "Altie122",

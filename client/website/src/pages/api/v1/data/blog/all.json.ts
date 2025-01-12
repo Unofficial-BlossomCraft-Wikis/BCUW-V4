@@ -51,7 +51,6 @@ export const GET: APIRoute = async ({ params, request }) => {
       };
     })
   );
-  console.log(formattedItems);
   return new Response(
     JSON.stringify({
       blogposts: formattedItems,

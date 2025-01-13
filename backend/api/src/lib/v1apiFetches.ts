@@ -8,7 +8,11 @@ import type {
   V1PatchnotesAPIResponse,
   V1AnnouncementsAPIResponse,
 } from "./apiTypes";
-import { renderMDX } from "./renderer";
+// import { renderMDX } from "./renderer"; // removed, will render on page load/on client
+
+async function renderMDX(source: any) {
+  return source;
+}
 
 // all data
 

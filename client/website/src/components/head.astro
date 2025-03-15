@@ -45,3 +45,5 @@ const page = new URL(Astro.url.pathname, Astro.site);
 <link rel="apple-touch-icon" href={icon}>
 <link rel="apple-touch-startup-image" href={domain + banner_formatted}>
 <meta name="apple-mobile-web-app-title" content={title}>
+<!-- versionId for altie122.xyz/projects -->
+<meta name="versionId" content={`${import.meta.env.DEPLOY_ID}-${import.meta.env.CONTEXT}-${import.meta.env.COMMIT_REF}`}>
